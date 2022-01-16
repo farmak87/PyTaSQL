@@ -22,20 +22,20 @@ from mysql.connector import Error
 
 for far in range(3600):
 ########################################################################################################################
-#a for loop creates a set of new REQUEST that are being originated from requestservice
+#a for loop creates a set of new REQUESTS
     for x in range(3):
         nreq = f.newRequest() # a new request is created
         f.insert_new_request(nreq[:4]) # data assosiated with the generated request is being recorded to a MySQL table
         if nreq[2] == 0: #if request_result is 0 then continue
             m = f.newScoringRequest(nreq[1]) # eligibility check is being performed
             f.insert_new_scorring_request(m) # scorring data is recorded to the MySQL table
-            c = f.newCreditProvision(m[:5]) # a pseudo customer is being given a pseudo loan
-            f.insert_new_creditprovisionrequest(c) # loanprovision data is recoded to the MySQL table
+            c = f.newCreditProvision(m[:5]) # a new loan issuance record is generated
+            f.insert_new_creditprovisionrequest(c) # loan issuance data is recoded to the MySQL table
             if c[4] != 'rejected':
                 f.insert_new_debt(c[0],c[1],c[3],c[4],c[5],c[6],c[5]+c[6],datetime.now())  # a new debt is being registered in LOANS table
                 balance = f.getBalance(c[1])
                 new_balance = balance + c[5]
-                f.adjustBalance(c[1],new_balance)            
+                f.adjustBalance(c[1],new_balance) # updates a balance of a pseudo customer            
             nreq = []
     #t.sleep(1)
 ########################################################################################################################
