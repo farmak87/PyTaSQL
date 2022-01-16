@@ -155,7 +155,7 @@ def scoring(aon,c30,c90):
         
 
 ###################################################################
-# the below function was not written by us, taken from the internet
+# the below function was not written by me, I took it from https://pynative.com/python-mysql-database-connection/ and modified according to my needs
 # it establishes connection to MYSQL, inserts the values to the table and then closes the connection 
 def insert_new_customer(CUSTOMERID, ACTIVATIONDATE, DAYSONNETWORK, CUMULATIVE30DAYS, CUMULATIVE90DAYS, LASTRECHARGEDATETIME,BALANCE):
     try:
