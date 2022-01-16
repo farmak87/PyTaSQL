@@ -1,13 +1,7 @@
-from logging import error
-import pandas as pd
-import numpy as np
 import functions as f
-import uuid as u
 from datetime import datetime
-import random as r
 import time as t
 #import mysql.connector
-from mysql.connector import Error
 
 ########################################################
 
@@ -20,7 +14,7 @@ from mysql.connector import Error
 #     nu = []
 
 
-for far in range(3600):
+for far in range(1):
 ########################################################################################################################
 #a for loop creates a set of new REQUESTS
     for x in range(3):
