@@ -13,7 +13,8 @@ from mysql.connector import Error
 
 
 # a for loop creates a set of new users depending on the predifined number in the range. 
-# for x in range(10000):
+#new_users_count = 10000
+# for x in range(new_users_count):
 #     nu = f.newUser()
 #     f.insert_new_customer(nu[0],nu[1],nu[2],nu[3],nu[4],nu[5],nu[6])
 #     nu = []
