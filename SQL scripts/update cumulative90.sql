@@ -1,0 +1,8 @@
+WITH cte1 AS (
+	SELECT CUSTOMERID AS CUSTOMERID, sum(RECHARGEAMOUNT) AS CUMULLATIVE30
+	from recharges
+	where RECHARGEDATETIME >= CURDATE()-90
+	GROUP BY CUSTOMERID)
+
+update customers set balance = cte1.cumulative30
+WHERE CUSTOMERID = cte1.customers
