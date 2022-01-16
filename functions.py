@@ -3,7 +3,7 @@ import random as r
 from datetime import datetime
 import datetime as d
 import mysql.connector
-import pandas as pn
+#import pandas as pn
 
 username = 'pytasql'
 pswrd = 'PyTaSQL@'
@@ -11,7 +11,7 @@ pswrd = 'PyTaSQL@'
 ################################################################## 
 
 def newUser():
-#returns a new pseudo users
+#returns a new pseudo user
     id = u.uuid4()
     aDate = randomDate()
     daysOnNetwork = (datetime.date(datetime.now()) - aDate).days
@@ -28,7 +28,7 @@ def newUser():
 #################################################################
 
 def newRecharge():
-#returns a new recharge 
+#returns a new pseudo recharge 
     customerid = get_rand_customerid()
     recharge_datetime = datetime.now()
     recharge_amount = r.randrange(1,20,1)
@@ -38,8 +38,7 @@ def newRecharge():
 #################################################################
 
 def newRequest():
-#returns a new request which then is being recorded to the requestservice table
-#request_datetime,str(customerid),request_result,request_content
+#returns a new pseudo request by a pseudo customer 
     request_datetime = datetime.now()
     customerid = get_rand_customerid()
     request_result = r.randrange(0,2,1)
@@ -49,10 +48,10 @@ def newRequest():
   
 #################################################################
     
-#generates a new scoring request
+
 
 def newScoringRequest(CUSTOMERID):
-#messageID, custID, loantype, loanamount, resultcode, scorringdatetime    
+#generates a new pseudo scoring request    
     messageID = get_messageid(CUSTOMERID)
     custID = CUSTOMERID
     scorringdata = get_scoring_data(CUSTOMERID)
@@ -69,8 +68,9 @@ def newScoringRequest(CUSTOMERID):
 
 #################################################################
 
-#generates new loan provision request
+
 def newCreditProvision(cred_prov):
+#generates a new pseudo loan issuance request
     #MESSAGEID, CUSTOMERID, LOANTYPE, LOANAMOUNT, RESULTCODE
     mesID = cred_prov[0]
     custID = cred_prov[1]
@@ -157,7 +157,8 @@ def scoring(aon,c30,c90):
 ###################################################################
 # the below function was not written by me, I took it from https://pynative.com/python-mysql-database-connection/ and modified according to my needs
 # it establishes connection to MYSQL, inserts the values to the table and then closes the connection 
-def insert_new_customer(CUSTOMERID, ACTIVATIONDATE, DAYSONNETWORK, CUMULATIVE30DAYS, CUMULATIVE90DAYS, LASTRECHARGEDATETIME,BALANCE):
+def insert_new_customer(new_users):
+
     try:
         connection = mysql.connector.connect(host='127.0.0.1',
                                             database='pytasql',
@@ -166,8 +167,8 @@ def insert_new_customer(CUSTOMERID, ACTIVATIONDATE, DAYSONNETWORK, CUMULATIVE30D
         cursor = connection.cursor()    
         mySql_insert_query = """INSERT INTO customers (CUSTOMERID, ACTIVATIONDATE, DAYSONNETWORK, CUMULATIVE30DAYS, CUMULATIVE90DAYS, LASTRECHARGEDATETIME, BALANCE) 
                                 VALUES (%s, %s, %s, %s, %s, %s, %s) """
-
-        record = (CUSTOMERID, ACTIVATIONDATE, DAYSONNETWORK, CUMULATIVE30DAYS, CUMULATIVE90DAYS, LASTRECHARGEDATETIME, BALANCE)
+                 #CUSTOMERID, ACTIVATIONDATE, DAYSONNETWORK, CUMULATIVE30DAYS, CUMULATIVE90DAYS, LASTRECHARGEDATETIME,BALANCE 
+        record = (new_users[0], new_users[1], new_users[2], new_users[3], new_users[4], new_users[5], new_users[6])
         cursor.execute(mySql_insert_query, record)
         connection.commit()
         print("Record inserted successfully into CUSTOMERS table")

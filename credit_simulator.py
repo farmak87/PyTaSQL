@@ -6,17 +6,17 @@ import uuid as u
 from datetime import datetime
 import random as r
 import time as t
-import mysql.connector
+#import mysql.connector
 from mysql.connector import Error
 
 ########################################################
 
 
-# a for loop creates a set of new users depending on the predifined number in the range. 
-#new_users_count = 10000
+# creates given number of new users. 
+# new_users_count = 10000
 # for x in range(new_users_count):
 #     nu = f.newUser()
-#     f.insert_new_customer(nu[0],nu[1],nu[2],nu[3],nu[4],nu[5],nu[6])
+#     f.insert_new_customer(nu)
 #     nu = []
 
 
