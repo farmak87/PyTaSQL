@@ -1,4 +1,4 @@
-call pytasql.dates4join; --when used in Tableau, this part of code to be pasted in the "Initial SQL"
+call pytasql.dates4join; --when used in Tableau, this part of code to be used in the "Initial SQL"
 
 SELECT d4j.PDate as pDate,
 	   d4j.CDate as cDate,
