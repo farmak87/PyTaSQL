@@ -14,10 +14,10 @@ import time as t
 #     nu = []
 
 
-for far in range(1):
+for far in range(3700):
 ########################################################################################################################
 #a for loop creates a set of new REQUESTS
-    for x in range(3):
+    for x in range(4):
         nreq = f.newRequest() # a new request is created
         f.insert_new_request(nreq[:4]) # data assosiated with the generated request is being recorded to a MySQL table
         if nreq[2] == 0: #if request_result is 0 then continue
@@ -36,7 +36,7 @@ for far in range(1):
 
 # a for loop creates a set of top-ups which in their turn trigger collection
 
-    for x in range(8):
+    for x in range(4):
         nt = f.newRecharge() #generates a new pseudo top-up
         f.insert_new_topup(nt[0],nt[1],nt[2])
         f.adjustBalance(nt[0],nt[2]) # customer balance is being adjusted after top-up
