@@ -1,3 +1,6 @@
+CREATE DEFINER=`root`@`localhost` PROCEDURE `update_cumulativeTopUP30`()
+BEGIN
+	
     WITH cte AS 
     (
 		SELECT CUSTOMERID, sum(RECHARGEAMOUNT) AS CUMULLATIVE30
@@ -5,10 +8,11 @@
 		WHERE RECHARGEDATETIME >= date_add(rechargedatetime, interval -30 day)
 		GROUP BY CUSTOMERID
     )
-UPDATE customers as c
-inner join cte on (c.CUSTOMERID = cte.CUSTOMERID)
-SET c.CUMULATIVE30DAYS  = cte.CUMULLATIVE30
-
+	UPDATE customers as c
+	inner join cte on (c.CUSTOMERID = cte.CUSTOMERID)
+	SET c.CUMULATIVE30DAYS  = cte.CUMULLATIVE30
+;    
+END
     
     
     
