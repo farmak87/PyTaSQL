@@ -14,7 +14,7 @@ import time as t
 #     nu = []
 
 
-for far in range(3740):
+for far in range(3650):
 ########################################################################################################################
 #a for loop creates a set of new REQUESTS
     for x in range(4):
